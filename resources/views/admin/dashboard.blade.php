@@ -1,21 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-    <a class="dropdown-item" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-                                                                                                 document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-    </a>
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
     <div class="row">
         <div class="col-md-12 grid-margin">
             <div class="d-flex justify-content-between flex-wrap">
                 <div class="d-flex align-items-end flex-wrap">
                     <div class="me-md-3 me-xl-5">
-                        <h2>Welcome back,</h2>
+                        @if (session('message'))
+                            <h2 class="alert alert-success">{{ session('message') }}</h2>
+                        @endif
                         <p class="mb-md-0">Your analytics dashboard template.</p>
                     </div>
                     <div class="d-flex">

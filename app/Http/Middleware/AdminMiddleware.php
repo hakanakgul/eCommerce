@@ -17,13 +17,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        //need check if user is admin
-        dd((Auth::user()->role_as));
-        if (!Auth::user()->role_as == 20) {
-            dd("geldi");
+        //need check if user is admin 
+
+        if (Auth::user()->role_as != 20) {
             return redirect("/home")->with('status', 'You are not authorized to access this page.');
         }
-        dd("geldi next");
+
         return $next($request);
     }
 }
