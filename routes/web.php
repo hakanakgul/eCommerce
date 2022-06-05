@@ -29,8 +29,18 @@ Route::prefix("admin")->middleware(["auth", 'isAdmin'])->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    //Category Routes
-    Route::get("category", [CategoryController::class, "index"])->name("admin.category.index");
-    Route::get("category/create", [CategoryController::class, "create"]);
-    Route::post("category", [CategoryController::class, "store"]);
+
+
+    Route::controller(CategoryController::class)->group(function () {
+        //Category Routes
+        Route::get("category", "index")->name("admin.category.index");
+        Route::get("category/create", "create");
+        Route::post("category", "store");
+
+        Route::get("category/{category}/edit", "edit");
+        Route::put("category/{category}", "update");
+
+        Route::get("category/{category}/delete", "delete");
+        Route::post("category/{category/edit", "destroy");
+    });
 });
